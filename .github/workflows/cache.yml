@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI from Cache
 # 忘记upload Artifact，可通过已经生成的cache重新Artifact！
 on: workflow_dispatch
 jobs:
@@ -16,4 +16,4 @@ jobs:
       uses: actions/upload-artifact@v5
       with:
         name: busybox-Android
-        path: busybox-Android.apk
+        path: app/build/outputs/apk/release
