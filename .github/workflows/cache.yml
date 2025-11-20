@@ -11,7 +11,13 @@ jobs:
       uses: actions/cache@v4
       with:
         path: app
-        key: setup-java-Linux-x64-gradle-5134888affc9d249b4829cce7887d3509ce21fbd1b9e191be8cd04191cfab320
+        key: gradle
+        restore-keys: |
+          setup-
+          java-
+          Linux-x64-
+          gradle-
+          5134888affc9d249b4829cce7887d3509ce21fbd1b9e191be8cd04191cfab3205134888affc9d249b4829cce7887d3509ce21fbd1b9e191be8cd04191cfab320
     - name: generate apk
       uses: actions/upload-artifact@v5
       with:
