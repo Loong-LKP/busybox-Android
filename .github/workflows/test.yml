@@ -6,15 +6,20 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
-    - name: checkout tag
-      id: CT
-      uses: actions/checkout@v4
-      with:
-        ref: '1.34.1'
-    - name: Test
-      run: |
-        echo $INPUT_REF
-        echo ${{ env.INPUT_REF }}
-        echo ${{ steps.CT }}
-        echo ${{ steps.CT.INPUT_REF }}
-        echo ${{ steps.CT.with.INPUT_REF }}
+    - name: Set output
+      id: So
+      run: echo "::set-output so={name}::{value}"
+    - name: Get output
+      run: echo ${{ steps.So.outputs.so }}
+      
+    - name: Set envoutput
+      id: Seo
+      run: echo "so={name}::{value}" >> $GITHUB_OUTPUT
+    - name: Get envoutput
+      run: echo ${{ steps.Seo.outputs.so }}
+      
+    - name: Set env
+      id: Se
+      run: echo "so=568" >> $GITHUB_ENV
+    - name: Get env
+      run: echo $so
