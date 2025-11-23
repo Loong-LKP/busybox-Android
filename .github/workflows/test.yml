@@ -8,13 +8,13 @@ jobs:
     steps:
     - name: Set output
       id: So
-      run: echo "::set-output so={name}::{value}"
+      run: echo "::set-output so=123"
     - name: Get output
       run: echo ${{ steps.So.outputs.so }}
       
     - name: Set envoutput
       id: Seo
-      run: echo "so={name}::{value}" >> $GITHUB_OUTPUT
+      run: echo "so=456" >> $GITHUB_OUTPUT
     - name: Get envoutput
       run: echo ${{ steps.Seo.outputs.so }}
       
