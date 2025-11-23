@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Set output
       id: So
-      run: echo "::set-output so={name}::123"
+      run: echo "::set-output so::123"
     - name: Get output
       run: echo ${{ steps.So.outputs.so }}
       
