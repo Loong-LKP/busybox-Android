@@ -6,7 +6,11 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
-    - uses: actions/checkout@v4
+    - name: checkout tag
+      uses: actions/checkout@v4
       with:
         ref: '1.34.1'
-    - run: echo ${{ github.ref }}
+    - id: get_tag
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: echo tag
+      run: echo ${{ steps.get_tag.outputs.VERSION }}
