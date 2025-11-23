@@ -7,13 +7,13 @@ jobs:
 
     steps:
     - name: checkout tag
+      id: CT
       uses: actions/checkout@v4
       with:
         ref: '1.34.1'
-    - name: Set env
-      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - name: Test
       run: |
-        echo $RELEASE_VERSION
-        echo ${{ env.RELEASE_VERSION }}
-        echo ${{ github.ref_name }}
+        echo $INPU_ref
+        echo ${{ env.INPU_ref }}
+        echo ${{ steps.CT.INPU_ref }}
+        echo ${{ steps }}
