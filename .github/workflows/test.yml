@@ -10,8 +10,8 @@ jobs:
       id: CT
       uses: actions/checkout@v4
       with:
-        ref: '1.34.1'
+        ref: 'v1.34.1'
     # - id: get_tag
     #   run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - name: echo tag
-      run: echo ${{ steps.CT.ref }}
+      run: echo ${{ steps.CT.with.ref }}
