@@ -65,5 +65,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         tag: ${{ env.Tag }}
+        name: BusyBox ${{ env.Tag }}
         artifacts: "*.apk"
         generateReleaseNotes: yes
