@@ -1,0 +1,12 @@
+name: Test action
+on: workflow_dispatch
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-slim
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: '1.34.1'
+    - run: echo ${{ github.ref }}
