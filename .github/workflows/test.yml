@@ -13,7 +13,8 @@ jobs:
         ref: '1.34.1'
     - name: Test
       run: |
-        echo $INPU_ref
-        echo ${{ env.INPU_ref }}
-        echo ${{ steps.CT.INPU_ref }}
-        echo ${{ steps }}
+        echo $INPU_REF
+        echo ${{ env.INPU_REF }}
+        echo ${{ steps.CT }}
+        echo ${{ steps.CT.INPU_REF }}
+        echo ${{ steps.CT.with.INPU_REF }}
