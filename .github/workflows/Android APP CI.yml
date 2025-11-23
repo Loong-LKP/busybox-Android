@@ -34,7 +34,7 @@ jobs:
         keyPassword: ${{ secrets.KEY_PASSWORD }}
         buildToolsVersion: 36.0.0
 
-    - name: generate apk
+    - name: upload artifacts
       uses: actions/upload-artifact@v5
       with:
         name: busybox_${{ env.Tag }}
