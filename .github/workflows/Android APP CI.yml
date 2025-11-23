@@ -64,5 +64,6 @@ jobs:
     - name: Release(create&upload)
       uses: ncipollo/release-action@v1
       with:
+        tag: ${{ env.Tag }}
         artifacts: "*.apk"
         generateReleaseNotes: yes
