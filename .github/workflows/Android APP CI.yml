@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: set ENV
       id: SE
-      run: echo 'Tag=1.34.1' >> GITHUB_ENV
+      run: echo 'Tag=1.34.1' >> $GITHUB_ENV
     - uses: actions/checkout@v4
       with:
         ref: $Tag
