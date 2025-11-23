@@ -1,5 +1,5 @@
 name: Android APP CI
-run-name: Build_Sign_Artifact_createRelease_uploadArtifactRelease
+run-name: Build_Sign_Artifact_Release(create&upload)
 on: workflow_dispatch
 env:
   Tag: 1.34.1
@@ -37,25 +37,32 @@ jobs:
     - name: generate apk
       uses: actions/upload-artifact@v5
       with:
-        name: busybox_release
+        name: busybox_${{ env.Tag }}
         # path: app/build/outputs/apk/release/*.apk
         path: ${{ steps.sign_app.outputs.signedFile }}
 
-    - name: create release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: create release
+    #   id: create_release
+    #   uses: actions/create-release@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: ${{ env.Tag }}
+    #     release_name: BusyBox ${{ env.Tag }}
+    # - name: Upload Release Asset
+    #   id: upload_release_asset 
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+    #     asset_path: ${{ steps.sign_app.outputs.signedFile }}
+    #     asset_name: BusyBox-${{ env.Tag }}.apk
+    #     asset_content_type: application/vnd.android.package-archiv
+
+    - run: mv ${{ steps.sign_app.outputs.signedFile }} BusyBox-${{ env.Tag }}.apk
+    - name: Release(create&upload)
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: ${{ env.Tag }}
-        release_name: Release ${{ env.Tag }}
-    - name: Upload Release Asset
-      id: upload_release_asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ steps.sign_app.outputs.signedFile }}
-        asset_name: App.apk
-        asset_content_type: application/vnd.android.package-archiv
+        artifacts: "*.apk"
+        generateReleaseNotes: yes
