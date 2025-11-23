@@ -67,4 +67,5 @@ jobs:
         tag: ${{ env.Tag }}
         name: BusyBox ${{ env.Tag }}
         artifacts: "*.apk"
+        makeLatest: yes
         generateReleaseNotes: yes
